@@ -22,10 +22,12 @@ export default async function handler(req, res) {
   const list = clean.map((t, i) => `${i + 1}. ${t}`).join('\n')
   const prompt =
     `Below are open-ended written responses from a student ministry brand survey ` +
-    `(people reacting to a new visual brand). Write a concise 2-3 sentence summary of the ` +
-    `collective feedback: the overall sentiment plus the most common themes — what people ` +
-    `like, any concerns, and notable suggestions. Be neutral and specific. Synthesize; do not ` +
-    `restate individual responses or use a numbered list.\n\nResponses:\n${list}`
+    `(people reacting to a new visual brand). Summarize the collective feedback: the overall ` +
+    `sentiment plus the most common themes — what people like, any concerns, and notable ` +
+    `suggestions.\n\n` +
+    `Respond with ONLY 2-3 plain sentences. No heading, no title, no markdown, no bullet ` +
+    `points, no preamble like "Here is a summary". Be neutral and specific, and synthesize ` +
+    `rather than restating individual responses.\n\nResponses:\n${list}`
 
   try {
     const r = await fetch('https://api.anthropic.com/v1/messages', {
