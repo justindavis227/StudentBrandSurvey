@@ -57,7 +57,7 @@ export default function Intro({ onComplete }) {
         <div
           key={src}
           className={`intro-slide${slideIndex === i && phase === 'slides' ? ' visible' : ''}`}
-          style={{ backgroundImage: `url(${src})` }}
+          style={{ backgroundImage: `url("${encodeURI(src)}")` }}
         />
       ))}
 
@@ -82,7 +82,7 @@ export default function Intro({ onComplete }) {
 
       {/* Headline */}
       <div className={`intro-headline${showHeadline ? ' show' : ''}`} style={{ zIndex: 8 }}>
-        WHAT DO YOU THINK<br />OF OUR <span>NEW LOOK?</span>
+        NEW BRAND<br /><span>DOWNLOADING...</span>
       </div>
 
     </div>
