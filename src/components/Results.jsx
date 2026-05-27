@@ -79,7 +79,9 @@ export default function Results() {
       .on(
         'postgres_changes',
         { event: 'INSERT', schema: 'public', table: 'survey_responses' },
-        payload => setResponses(prev => [payload.new, ...prev])
+        payload => setResponses(prev =>
+          prev.some(r => r.id === payload.new.id) ? prev : [payload.new, ...prev]
+        )
       )
       .subscribe()
 
