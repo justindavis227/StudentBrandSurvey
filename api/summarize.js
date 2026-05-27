@@ -1,7 +1,7 @@
 // Vercel serverless function: summarize open-ended survey responses with Claude.
 // Requires the ANTHROPIC_API_KEY environment variable (set in Vercel project settings).
 
-const MODEL = 'claude-3-5-haiku-latest'
+const MODEL = 'claude-haiku-4-5-20251001'
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
