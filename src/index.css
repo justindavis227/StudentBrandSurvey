@@ -323,7 +323,7 @@ body {
 }
 .logo-opt:hover { border-color: #444; transform: translateY(-2px); }
 .logo-opt.sel { border-color: var(--ember); background: #180e06; }
-.logo-img-wrap { width: 100%; aspect-ratio: 3/2; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; border-radius: 6px; background: #f8f5ec; padding: 8px; overflow: hidden; }
+.logo-img-wrap { position: relative; width: 100%; aspect-ratio: 3/2; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; border-radius: 6px; background: #fffef6; padding: 8px; overflow: hidden; }
 .logo-img-wrap img { max-width: 100%; max-height: 100%; object-fit: contain; }
 .opt-badge { display: inline-block; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: #555; margin-bottom: 8px; background: var(--border); padding: 2px 8px; border-radius: 20px; }
 .logo-opt.sel .opt-badge { color: var(--ember); background: #2a1000; }
@@ -351,8 +351,46 @@ body {
 .illus-opt.maxed { opacity: 0.35; pointer-events: none; }
 .illus-badge { display: inline-block; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: #555; margin-bottom: 8px; background: var(--border); padding: 2px 7px; border-radius: 20px; }
 .illus-opt.sel .illus-badge { color: var(--ember); background: #2a1000; }
-.illus-img-wrap { width: 100%; aspect-ratio: 1; display: flex; align-items: center; justify-content: center; margin-bottom: 8px; background: #d8c030; border-radius: 6px; padding: 8px; overflow: hidden; }
+.illus-img-wrap { position: relative; width: 100%; aspect-ratio: 1; display: flex; align-items: center; justify-content: center; margin-bottom: 8px; background: #e3d157; border-radius: 6px; padding: 8px; overflow: hidden; }
 .illus-img-wrap img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+/* Peek (enlarge) button on logo/illustration cards */
+.peek-btn {
+  position: absolute; top: 6px; right: 6px;
+  width: 24px; height: 24px; border: none; border-radius: 6px;
+  background: rgba(7,8,10,0.55); color: #fff; cursor: pointer;
+  font-size: 12px; line-height: 1; display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity 0.18s, background 0.18s; backdrop-filter: blur(2px);
+}
+.logo-opt:hover .peek-btn, .illus-opt:hover .peek-btn, .peek-btn:focus-visible { opacity: 1; }
+.peek-btn:hover { background: var(--ember); }
+@media (hover: none) { .peek-btn { opacity: 0.85; } }
+
+/* Peek lightbox */
+.peek-overlay {
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(0,0,0,0.85); backdrop-filter: blur(6px);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px;
+  padding: 32px; animation: fadeUp 0.2s ease both; cursor: zoom-out;
+}
+.peek-frame {
+  border-radius: 14px; padding: 28px; cursor: default;
+  width: min(78vw, 560px); aspect-ratio: 4/3;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+}
+.peek-frame img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.peek-label {
+  font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: #cfcabf;
+}
+.peek-close {
+  position: fixed; top: 22px; right: 24px; z-index: 201;
+  width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border);
+  background: rgba(20,22,24,0.8); color: #fff; font-size: 16px; cursor: pointer;
+  transition: background 0.18s, border-color 0.18s;
+}
+.peek-close:hover { background: var(--ember); border-color: var(--ember); }
 .illus-name { font-size: 11px; font-weight: 700; color: #e0d8cc; }
 
 /* ── TEXTAREA ── */

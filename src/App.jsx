@@ -26,6 +26,7 @@ export default function App() {
   const [colors, setColors] = useState([])
   const [illustrations, setIllustrations] = useState([])
   const [rawThoughts, setRawThoughts] = useState('')
+  const [peek, setPeek] = useState(null) // { img, label, bg }
 
   const handleIntroComplete = useCallback(() => {
     sessionStorage.setItem('introSeen', '1')
@@ -197,6 +198,12 @@ export default function App() {
                   <div className="opt-badge">{opt.value}</div>
                   <div className="logo-img-wrap">
                     <img src={opt.img} alt={opt.label} />
+                    <button
+                      type="button"
+                      className="peek-btn"
+                      aria-label={`Enlarge ${opt.label}`}
+                      onClick={e => { e.stopPropagation(); setPeek({ img: opt.img, label: opt.label, bg: '#fffef6' }) }}
+                    >⛶</button>
                   </div>
                   <div className="opt-name">{opt.label}</div>
                   <div className="opt-desc">{opt.desc}</div>
@@ -258,6 +265,12 @@ export default function App() {
                     <div className="illus-badge">{i + 1}</div>
                     <div className="illus-img-wrap">
                       <img src={opt.img} alt={opt.label} />
+                      <button
+                        type="button"
+                        className="peek-btn"
+                        aria-label={`Enlarge ${opt.label}`}
+                        onClick={e => { e.stopPropagation(); setPeek({ img: opt.img, label: opt.label, bg: '#e3d157' }) }}
+                      >⛶</button>
                     </div>
                     <div className="illus-name">{opt.label}</div>
                   </div>
@@ -298,6 +311,16 @@ export default function App() {
         )}
 
       </div>
+
+      {peek && (
+        <div className="peek-overlay" onClick={() => setPeek(null)}>
+          <button className="peek-close" aria-label="Close" onClick={() => setPeek(null)}>✕</button>
+          <div className="peek-frame" style={{ background: peek.bg }} onClick={e => e.stopPropagation()}>
+            <img src={peek.img} alt={peek.label} />
+          </div>
+          <div className="peek-label">{peek.label}</div>
+        </div>
+      )}
     </>
   )
 }
