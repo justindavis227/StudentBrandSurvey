@@ -4,28 +4,25 @@ export const INTRO_IMAGES = [
   '/Screenshot 2026-05-26 at 7.43.08 PM.png',
   '/Screenshot 2026-05-26 at 7.43.23 PM.png',
   '/Screenshot 2026-05-26 at 7.43.33 PM.png',
-  '/Screenshot 2026-05-26 at 7.43.44 PM.png',
-  '/Screenshot 2026-05-26 at 7.43.58 PM.png',
   '/Screenshot 2026-05-26 at 7.44.09 PM.png',
 ]
 
 export const LOGO_OPTIONS = [
-  { value: 'A', label: 'Icon + Wordmark', desc: 'Bold "i" mark beside the name', img: '/logo-a.png' },
-  { value: 'B', label: 'Solid Wordmark',  desc: 'Clean bold type, nothing extra',  img: '/logo-b.png' },
-  { value: 'C', label: 'Outline Type',    desc: 'Hollow / stroked letterforms',    img: '/logo-c.png' },
-  { value: 'D', label: 'Block Badge',     desc: 'Name inside a dark rectangle',    img: '/logo-d.png' },
-  { value: 'E', label: 'Circle Stamp',    desc: 'Round badge with "S" at center',  img: '/logo-e.png' },
-  { value: 'F', label: 'S Monogram',      desc: 'Just the bold "S" alone',         img: '/logo-f.png' },
+  { value: 'A', label: 'Icon + Wordmark', desc: 'Bold "i" mark beside the name', img: '/STUD_Logo1.png' },
+  { value: 'B', label: 'Solid Wordmark',  desc: 'Clean bold type, nothing extra',  img: '/STUD_Logo4.png' },
+  { value: 'C', label: 'Outline Type',    desc: 'Hollow / stroked letterforms',    img: '/STUD_Logo2.png' },
+  { value: 'D', label: 'Block Badge',     desc: 'Name inside a dark rectangle',    img: '/STUD_Logo5.png' },
+  { value: 'E', label: 'Circle Stamp',    desc: 'Round badge with "S" at center',  img: '/STUD_Logo3.png' },
+  { value: 'F', label: 'S Monogram',      desc: 'Just the bold "S" alone',         img: '/STUD_Logo6.png' },
 ]
 
 export const ILLUS_OPTIONS = [
-  { value: 'bull',      label: 'Bull',         img: '/illus-bull.png' },
-  { value: 'avalanche', label: 'Avalanche',     img: '/illus-avalanche.png' },
-  { value: 'coil',      label: 'Coil',          img: '/illus-coil.png' },
-  { value: 'kite',      label: 'Kite & Anchor', img: '/illus-kite.png' },
-  { value: 'volcano',   label: 'Volcano',        img: '/illus-volcano.png' },
-  { value: 'match',     label: 'Match',          img: '/illus-match.png' },
-  { value: 'dominoes',  label: 'Dominoes',       img: '/illus-dominoes.png' },
+  { value: 'bull',      label: 'Bull',          img: '/STUD_Illustration1.png' },
+  { value: 'avalanche', label: 'Avalanche',     img: '/STUD_Illustration2.png' },
+  { value: 'coil',      label: 'Coil',          img: '/STUD_Illustration3.png' },
+  { value: 'kite',      label: 'Kite & Anchor', img: '/STUD_Illustration4.png' },
+  { value: 'match',     label: 'Match',         img: '/STUD_Illustration5.png' },
+  { value: 'volcano',   label: 'Volcano',       img: '/STUD_Illustration6.png' },
 ]
 
 export const TAG_OPTIONS = [

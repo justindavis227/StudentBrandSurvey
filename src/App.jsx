@@ -96,7 +96,7 @@ export default function App() {
           <p className="q-sub">Open it up, flip through it, then come back here to share your thoughts.</p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginTop: '28px' }}>
             <a
-              href="/SoutheastStudents-Prez.pdf"
+              href="/SoutheastStudents_BrandReview1.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className={`btn btn-guide${guideOpened ? ' btn-back' : ' btn-next'}`}
