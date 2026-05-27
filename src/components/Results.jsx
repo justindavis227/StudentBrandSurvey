@@ -14,6 +14,24 @@ function tally(responses, field, options) {
     .sort((a, b) => b.count - a.count)
 }
 
+function OtherDropdown({ items }) {
+  const [open, setOpen] = useState(false)
+  if (items.length === 0) return null
+  return (
+    <div className="other-drop">
+      <button className="raw-toggle" onClick={() => setOpen(o => !o)}>
+        <span>"Other" answers ({items.length})</span>
+        <span className={`raw-caret${open ? ' open' : ''}`}>▾</span>
+      </button>
+      {open && (
+        <ul className="other-list-results">
+          {items.map((t, i) => <li key={i}>{t}</li>)}
+        </ul>
+      )}
+    </div>
+  )
+}
+
 function BarChart({ rows, accent }) {
   const max = Math.max(1, ...rows.map(r => r.count))
   return (
@@ -41,6 +59,8 @@ export default function Results() {
   const [responses, setResponses] = useState([])
   const [loading, setLoading] = useState(true)
   const [rawOpen, setRawOpen] = useState(false)
+  const [summary, setSummary] = useState('')
+  const [summaryState, setSummaryState] = useState('idle') // idle | loading | done | unavailable
 
   useEffect(() => {
     let mounted = true
@@ -65,6 +85,40 @@ export default function Results() {
 
     return () => { mounted = false; supabase.removeChannel(channel) }
   }, [])
+
+  // Generate an AI summary of raw responses when the section is opened.
+  // Cached by response count so it only regenerates when new responses arrive.
+  useEffect(() => {
+    if (!rawOpen) return
+    const raws = responses.map(r => (r.raw_thoughts || '').trim()).filter(Boolean)
+    if (raws.length === 0) { setSummaryState('idle'); return }
+
+    const cacheKey = `rawSummary:${raws.length}`
+    const cached = sessionStorage.getItem(cacheKey)
+    if (cached) { setSummary(cached); setSummaryState('done'); return }
+
+    let active = true
+    setSummaryState('loading')
+    fetch('/api/summarize', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ responses: raws }),
+    })
+      .then(r => r.ok ? r.json() : Promise.reject())
+      .then(d => {
+        if (!active) return
+        if (d.summary) {
+          setSummary(d.summary)
+          setSummaryState('done')
+          sessionStorage.setItem(cacheKey, d.summary)
+        } else {
+          setSummaryState('unavailable')
+        }
+      })
+      .catch(() => { if (active) setSummaryState('unavailable') })
+
+    return () => { active = false }
+  }, [rawOpen, responses.length])
 
   const total = responses.length
 
@@ -97,12 +151,14 @@ export default function Results() {
         <div className="q-number">Question 01</div>
         <div className="q-text">Things people like most</div>
         <BarChart rows={tally(responses, 'likes', TAG_OPTIONS)} accent="var(--ember)" />
+        <OtherDropdown items={otherLikes} />
       </div>
 
       <div className="card result-card">
         <div className="q-number">Question 02</div>
         <div className="q-text">Things people like least</div>
         <BarChart rows={tally(responses, 'dislikes', TAG_OPTIONS)} accent="var(--blue-rasp)" />
+        <OtherDropdown items={otherDislikes} />
       </div>
 
       <div className="card result-card">
@@ -123,28 +179,6 @@ export default function Results() {
         <BarChart rows={tally(responses, 'illustrations', ILLUS_OPTIONS)} accent="var(--ember)" />
       </div>
 
-      {(otherLikes.length > 0 || otherDislikes.length > 0) && (
-        <div className="card result-card">
-          <div className="q-number">"Other" answers</div>
-          {otherLikes.length > 0 && (
-            <div className="other-block">
-              <div className="other-heading">Liked</div>
-              <ul className="other-list-results">
-                {otherLikes.map((t, i) => <li key={`l${i}`}>{t}</li>)}
-              </ul>
-            </div>
-          )}
-          {otherDislikes.length > 0 && (
-            <div className="other-block">
-              <div className="other-heading">Disliked</div>
-              <ul className="other-list-results">
-                {otherDislikes.map((t, i) => <li key={`d${i}`}>{t}</li>)}
-              </ul>
-            </div>
-          )}
-        </div>
-      )}
-
       <div className="card result-card">
         <button className="raw-toggle" onClick={() => setRawOpen(o => !o)}>
           <span>Raw responses ({raws.length})</span>
@@ -154,7 +188,19 @@ export default function Results() {
           <div className="raw-list">
             {raws.length === 0
               ? <p className="raw-empty">No written thoughts submitted.</p>
-              : raws.map((t, i) => <p className="raw-item" key={i}>“{t}”</p>)}
+              : (
+                <>
+                  {summaryState !== 'idle' && (
+                    <div className="ai-summary">
+                      <div className="ai-summary-label">✦ AI summary of responses</div>
+                      {summaryState === 'loading' && <p className="ai-summary-text dim">Summarizing the responses…</p>}
+                      {summaryState === 'done' && <p className="ai-summary-text">{summary}</p>}
+                      {summaryState === 'unavailable' && <p className="ai-summary-text dim">Summary unavailable right now.</p>}
+                    </div>
+                  )}
+                  {raws.map((t, i) => <p className="raw-item" key={i}>“{t}”</p>)}
+                </>
+              )}
           </div>
         )}
       </div>
