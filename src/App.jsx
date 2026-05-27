@@ -76,18 +76,21 @@ export default function App() {
           <div className="q-number">Before You Begin</div>
           <div className="q-text">Take a moment to review the brand guide.</div>
           <p className="q-sub">Open it up, flip through it, then come back here to share your thoughts.</p>
-          <div style={{ marginTop: '2.5rem' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginTop: '28px' }}>
             <a
               href="#brand-guide-pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-next btn-guide"
+              style={{ width: '100%', textAlign: 'center', textDecoration: 'none', boxSizing: 'border-box' }}
             >
               Open Brand Guide →
             </a>
-          </div>
-          <div style={{ marginTop: '1.25rem' }}>
-            <button className="btn btn-back" onClick={() => setReviewDone(true)}>
+            <button
+              className="btn btn-back"
+              onClick={() => setReviewDone(true)}
+              style={{ width: '100%', textAlign: 'center' }}
+            >
               I've reviewed it, let's go →
             </button>
           </div>
