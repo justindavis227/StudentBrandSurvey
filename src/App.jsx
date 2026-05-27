@@ -8,6 +8,7 @@ const TOTAL_STEPS = 6
 
 export default function App() {
   const [introComplete, setIntroComplete] = useState(false)
+  const [reviewDone, setReviewDone] = useState(false)
   const [titleReveal, setTitleReveal] = useState(false)
   const [step, setStep] = useState(1)
   const [submitted, setSubmitted] = useState(false)
@@ -66,6 +67,34 @@ export default function App() {
   }
 
   if (!introComplete) return <Intro onComplete={handleIntroComplete} />
+
+  if (!reviewDone) return (
+    <>
+      <div className="stripe-bar" />
+      <div className="wrap">
+        <div className="card">
+          <div className="q-number">Before You Begin</div>
+          <div className="q-text">Take a moment to review the brand guide.</div>
+          <p className="q-sub">Open it up, flip through it, then come back here to share your thoughts.</p>
+          <div style={{ marginTop: '2.5rem' }}>
+            <a
+              href="#brand-guide-pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-next btn-guide"
+            >
+              Open Brand Guide →
+            </a>
+          </div>
+          <div style={{ marginTop: '1.25rem' }}>
+            <button className="btn btn-back" onClick={() => setReviewDone(true)}>
+              I've reviewed it, let's go →
+            </button>
+          </div>
+        </div>
+      </div>
+    </>
+  )
 
   if (submitted) return (
     <>
