@@ -43,7 +43,6 @@ export const TAG_OPTIONS = [
   { value: 'merch-look',       label: 'How it looks on merch' },
   { value: 'overall-vibe',     label: 'The overall vibe' },
   { value: 'one-pattern',      label: '"1" repeated pattern' },
-  { value: 'pattern-accents',  label: 'Pattern icons / accents' },
 ]
 
 export const COLOR_OPTIONS = [

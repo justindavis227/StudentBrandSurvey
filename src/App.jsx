@@ -126,7 +126,7 @@ export default function App() {
             What do you<br />think of our<br /><span>new look?</span>
           </h1>
           <p className={`header-sub${titleReveal ? ' reveal' : ''}`}>
-            Six quick questions. Your input helps us nail the direction that feels most like us.
+            Your input helps provide direction that feels most like us.
           </p>
         </div>
 
@@ -142,7 +142,7 @@ export default function App() {
         {step === 1 && (
           <div className="card" key="q1">
             <div className="q-number">Question 01</div>
-            <div className="q-text">Select the top 3 things you like most about this brand guide.</div>
+            <div className="q-text">Select: 3 things you like most.</div>
             <div className="max-hint"><em>{likes.length}</em>/3 selected</div>
             <TagGrid type="like" selected={likes} otherText={likeOther} onChange={setLikes} onOtherChange={setLikeOther} />
             <div className="nav-row">
@@ -155,7 +155,7 @@ export default function App() {
         {step === 2 && (
           <div className="card" key="q2">
             <div className="q-number">Question 02</div>
-            <div className="q-text">Select the 3 things you least like in the brand guide.</div>
+            <div className="q-text">Select: 3 things you like least.</div>
             <div className="max-hint"><em>{dislikes.length}</em>/3 selected</div>
             <TagGrid type="dislike" selected={dislikes} otherText={dislikeOther} onChange={setDislikes} onOtherChange={setDislikeOther} />
             <div className="nav-row">
@@ -168,8 +168,8 @@ export default function App() {
         {step === 3 && (
           <div className="card" key="q3">
             <div className="q-number">Question 03</div>
-            <div className="q-text">Of the six logos, which one do you like most?</div>
-            <div className="q-sub">Think about what you'd want on a shirt, a social post, or the stage screen.</div>
+            <div className="q-text">Select: 1 logo you like the most.</div>
+            <div className="q-sub">Think about what you'd want on a shirt, see on social media, signage, and screens.</div>
             <div className="logo-grid">
               {LOGO_OPTIONS.map(opt => (
                 <div
@@ -196,7 +196,7 @@ export default function App() {
         {step === 4 && (
           <div className="card" key="q4">
             <div className="q-number">Question 04</div>
-            <div className="q-text">Choose your top 2 preferred brand colors.</div>
+            <div className="q-text">Select: 2 colors you like most.</div>
             <div className="max-hint"><em>{colors.length}</em>/2 selected</div>
             <div className="color-grid">
               {COLOR_OPTIONS.map(opt => {
@@ -225,7 +225,8 @@ export default function App() {
         {step === 5 && (
           <div className="card" key="q5">
             <div className="q-number">Question 05</div>
-            <div className="q-text">Choose your top 3 illustrations.</div>
+            <div className="q-text">Select: 3 Illustrations you like most.</div>
+            <div className="q-sub">These act as elements to fill out our brand in unique ways.</div>
             <div className="max-hint"><em>{illustrations.length}</em>/3 selected</div>
             <div className="illus-grid">
               {ILLUS_OPTIONS.map((opt, i) => {
