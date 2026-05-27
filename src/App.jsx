@@ -7,7 +7,8 @@ import TagGrid from './components/TagGrid'
 const TOTAL_STEPS = 6
 
 export default function App() {
-  const [introComplete, setIntroComplete] = useState(false)
+  const [introComplete, setIntroComplete] = useState(() => !!sessionStorage.getItem('introSeen'))
+  const [guideOpened, setGuideOpened] = useState(false)
   const [reviewDone, setReviewDone] = useState(false)
   const [titleReveal, setTitleReveal] = useState(false)
   const [step, setStep] = useState(1)
@@ -25,6 +26,7 @@ export default function App() {
   const [rawThoughts, setRawThoughts] = useState('')
 
   const handleIntroComplete = useCallback(() => {
+    sessionStorage.setItem('introSeen', '1')
     setIntroComplete(true)
     setTimeout(() => setTitleReveal(true), 100)
   }, [])
@@ -78,16 +80,17 @@ export default function App() {
           <p className="q-sub">Open it up, flip through it, then come back here to share your thoughts.</p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginTop: '28px' }}>
             <a
-              href="#brand-guide-pdf"
+              href="/SoutheastStudents-Prez.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-next btn-guide"
+              className={`btn btn-guide${guideOpened ? ' btn-back' : ' btn-next'}`}
               style={{ width: '100%', textAlign: 'center', textDecoration: 'none', boxSizing: 'border-box' }}
+              onClick={() => setGuideOpened(true)}
             >
               Open Brand Guide →
             </a>
             <button
-              className="btn btn-back"
+              className={`btn${guideOpened ? ' btn-next' : ' btn-back'}`}
               onClick={() => setReviewDone(true)}
               style={{ width: '100%', textAlign: 'center' }}
             >

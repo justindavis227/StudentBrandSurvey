@@ -1,33 +1,31 @@
-const BASE = 'https://vhiqgsubnpubclloavqc.supabase.co/storage/v1/object/public/survey-assets'
-
 export const INTRO_IMAGES = [
-  `${BASE}/Screenshot%202026-05-26%20at%207.42.29%20PM.png`,
-  `${BASE}/Screenshot%202026-05-26%20at%207.42.42%20PM.png`,
-  `${BASE}/Screenshot%202026-05-26%20at%207.43.08%20PM.png`,
-  `${BASE}/Screenshot%202026-05-26%20at%207.43.23%20PM.png`,
-  `${BASE}/Screenshot%202026-05-26%20at%207.43.33%20PM.png`,
-  `${BASE}/Screenshot%202026-05-26%20at%207.43.44%20PM.png`,
-  `${BASE}/Screenshot%202026-05-26%20at%207.43.58%20PM.png`,
-  `${BASE}/Screenshot%202026-05-26%20at%207.44.09%20PM.png`,
+  '/Screenshot 2026-05-26 at 7.42.29 PM.png',
+  '/Screenshot 2026-05-26 at 7.42.42 PM.png',
+  '/Screenshot 2026-05-26 at 7.43.08 PM.png',
+  '/Screenshot 2026-05-26 at 7.43.23 PM.png',
+  '/Screenshot 2026-05-26 at 7.43.33 PM.png',
+  '/Screenshot 2026-05-26 at 7.43.44 PM.png',
+  '/Screenshot 2026-05-26 at 7.43.58 PM.png',
+  '/Screenshot 2026-05-26 at 7.44.09 PM.png',
 ]
 
 export const LOGO_OPTIONS = [
-  { value: 'A', label: 'Icon + Wordmark', desc: 'Bold "i" mark beside the name', img: `${BASE}/logo-a.png` },
-  { value: 'B', label: 'Solid Wordmark',  desc: 'Clean bold type, nothing extra',  img: `${BASE}/logo-b.png` },
-  { value: 'C', label: 'Outline Type',    desc: 'Hollow / stroked letterforms',    img: `${BASE}/logo-c.png` },
-  { value: 'D', label: 'Block Badge',     desc: 'Name inside a dark rectangle',    img: `${BASE}/logo-d.png` },
-  { value: 'E', label: 'Circle Stamp',    desc: 'Round badge with "S" at center',  img: `${BASE}/logo-e.png` },
-  { value: 'F', label: 'S Monogram',      desc: 'Just the bold "S" alone',         img: `${BASE}/logo-f.png` },
+  { value: 'A', label: 'Icon + Wordmark', desc: 'Bold "i" mark beside the name', img: '/logo-a.png' },
+  { value: 'B', label: 'Solid Wordmark',  desc: 'Clean bold type, nothing extra',  img: '/logo-b.png' },
+  { value: 'C', label: 'Outline Type',    desc: 'Hollow / stroked letterforms',    img: '/logo-c.png' },
+  { value: 'D', label: 'Block Badge',     desc: 'Name inside a dark rectangle',    img: '/logo-d.png' },
+  { value: 'E', label: 'Circle Stamp',    desc: 'Round badge with "S" at center',  img: '/logo-e.png' },
+  { value: 'F', label: 'S Monogram',      desc: 'Just the bold "S" alone',         img: '/logo-f.png' },
 ]
 
 export const ILLUS_OPTIONS = [
-  { value: 'bull',      label: 'Bull',         img: `${BASE}/illus-bull.png` },
-  { value: 'avalanche', label: 'Avalanche',     img: `${BASE}/illus-avalanche.png` },
-  { value: 'coil',      label: 'Coil',          img: `${BASE}/illus-coil.png` },
-  { value: 'kite',      label: 'Kite & Anchor', img: `${BASE}/illus-kite.png` },
-  { value: 'volcano',   label: 'Volcano',        img: `${BASE}/illus-volcano.png` },
-  { value: 'match',     label: 'Match',          img: `${BASE}/illus-match.png` },
-  { value: 'dominoes',  label: 'Dominoes',       img: `${BASE}/illus-dominoes.png` },
+  { value: 'bull',      label: 'Bull',         img: '/illus-bull.png' },
+  { value: 'avalanche', label: 'Avalanche',     img: '/illus-avalanche.png' },
+  { value: 'coil',      label: 'Coil',          img: '/illus-coil.png' },
+  { value: 'kite',      label: 'Kite & Anchor', img: '/illus-kite.png' },
+  { value: 'volcano',   label: 'Volcano',        img: '/illus-volcano.png' },
+  { value: 'match',     label: 'Match',          img: '/illus-match.png' },
+  { value: 'dominoes',  label: 'Dominoes',       img: '/illus-dominoes.png' },
 ]
 
 export const TAG_OPTIONS = [
