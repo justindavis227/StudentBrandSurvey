@@ -3,8 +3,10 @@ import { supabase } from './lib/supabase'
 import { LOGO_OPTIONS, ILLUS_OPTIONS, COLOR_OPTIONS } from './constants'
 import Intro from './components/Intro'
 import TagGrid from './components/TagGrid'
+import Results from './components/Results'
 
 const TOTAL_STEPS = 6
+const IS_RESULTS_ROUTE = typeof window !== 'undefined' && window.location.pathname === '/results'
 
 export default function App() {
   const [introComplete, setIntroComplete] = useState(() => !!sessionStorage.getItem('introSeen'))
@@ -68,6 +70,20 @@ export default function App() {
     }
   }
 
+  if (IS_RESULTS_ROUTE) return (
+    <>
+      <div className="stripe-bar" />
+      <div className="wrap">
+        <div className="header">
+          <div className="eyebrow">Southeast Students · Live Results</div>
+          <h1 className="site-title reveal">What everyone<br />thinks <span>so far.</span></h1>
+          <p className="header-sub reveal">A live look at the collective response.</p>
+        </div>
+        <Results />
+      </div>
+    </>
+  )
+
   if (!introComplete) return <Intro onComplete={handleIntroComplete} />
 
   if (!reviewDone) return (
@@ -109,8 +125,9 @@ export default function App() {
         <div className="thankyou">
           <span className="ty-mark">✦</span>
           <div className="ty-title">Thanks for<br />weighing in.</div>
-          <p className="ty-sub">Your feedback genuinely shapes where this goes next.<br />We appreciate you taking the time.</p>
+          <p className="ty-sub">Here's how the crowd is leaning so far —<br />updating live as more people respond.</p>
         </div>
+        <Results />
       </div>
     </>
   )
