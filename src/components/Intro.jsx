@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { INTRO_IMAGES } from '../constants'
 
 const SLIDE_DURATION = 400
-const HEADLINE_HOLD  = 1800
+const HEADLINE_HOLD  = 2200
 const FLASH_DURATION = 80
 
 export default function Intro({ onComplete }) {
@@ -82,7 +82,7 @@ export default function Intro({ onComplete }) {
 
       {/* Headline */}
       <div className={`intro-headline${showHeadline ? ' show' : ''}`} style={{ zIndex: 8 }}>
-        NEW BRAND<br /><span>DOWNLOADING...</span>
+        NEW BRAND<br /><span className="glitch" data-text="DOWNLOADING...">DOWNLOADING...</span>
       </div>
 
     </div>
