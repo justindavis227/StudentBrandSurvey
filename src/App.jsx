@@ -10,7 +10,7 @@ export default function App() {
   const [introComplete, setIntroComplete] = useState(() => !!sessionStorage.getItem('introSeen'))
   const [guideOpened, setGuideOpened] = useState(false)
   const [reviewDone, setReviewDone] = useState(false)
-  const [titleReveal, setTitleReveal] = useState(false)
+  const [titleReveal, setTitleReveal] = useState(() => !!sessionStorage.getItem('introSeen'))
   const [step, setStep] = useState(1)
   const [submitted, setSubmitted] = useState(false)
   const [submitting, setSubmitting] = useState(false)

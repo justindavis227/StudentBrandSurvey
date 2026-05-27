@@ -166,12 +166,14 @@ body {
 .tag.maxed { opacity: 0.35; pointer-events: none; }
 
 /* Other input */
-.other-wrap { display: flex; align-items: center; }
+.other-wrap { display: flex; align-items: stretch; transition: transform 0.15s; }
+.other-wrap:hover { transform: translateY(-1px); }
+.other-wrap:hover .tag.other-tag { transform: none; }
 .tag.other-tag.sel-like { border-right: none; border-radius: 8px 0 0 8px; }
 .tag.other-tag.sel-dislike { border-right: none; border-radius: 8px 0 0 8px; }
 .other-input {
   display: none;
-  height: 43px;
+  box-sizing: border-box;
   background: #0c0d0e;
   border: 2px solid var(--border);
   border-left: none;
